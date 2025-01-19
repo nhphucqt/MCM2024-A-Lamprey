@@ -13,13 +13,17 @@ print("Value of variables at the last t:")
 labels = ['C', 'Fast', 'Slow', 'F', 'M', 'O', 'E']
 for label, value in zip(labels, y[-1]):
     print(f"{label}: {value}")
+print(f"AL: {y[-1][3] + y[-1][4]}")
 
 plt.plot(t, y[:, 0], 'b', label='C')
 plt.plot(t, y[:, 1], 'r', label='Fast')
 plt.plot(t, y[:, 2], 'g', label='Slow')
 plt.plot(t, y[:, 3], 'y', label='F')
 plt.plot(t, y[:, 4], 'c', label='M')
+plt.plot(t, y[:, 3] + y[:, 4], 'k', label='AL')
 plt.plot(t, y[:, 5], 'm', label='O')
-plt.plot(t, y[:, 6], 'k', label='E')
+# plt.plot(t, y[:, 6], 'k', label='E')
 plt.legend()
+# Save to pdf
+plt.savefig('lamprey.pdf')
 plt.show()

@@ -62,9 +62,9 @@ def lamprey(t, y, args):
     AL = y[3] + y[4]
 
     # Dynamics
-    dC = (1 - y[0] / params['K_upstream']) * (params['p_E_to_C'] * y[6] - (1 - params['p_C_to_C']) * y[0])
-    dFast = params['p_C_to_Fast'] * y[0] - (1 - params['p_Fast_to_Fast']) * y[1]
-    dSlow = params['p_C_to_Slow'] * y[0] - (1 - params['p_Slow_to_Slow']) * y[2]
+    dC = (1 - (y[0] + y[1] + y[2]) / params['K_upstream']) * (params['p_E_to_C'] * y[6] - (1 - params['p_C_to_C']) * y[0])
+    dFast = (1 - (y[0] + y[1] + y[2]) / params['K_upstream']) * (params['p_C_to_Fast'] * y[0] - (1 - params['p_Fast_to_Fast']) * y[1])
+    dSlow = (1 - (y[0] + y[1] + y[2]) / params['K_upstream']) * (params['p_C_to_Slow'] * y[0] - (1 - params['p_Slow_to_Slow']) * y[2])
     dF = (1 - (AL + y[5]) / params['K_downstream']) * (
         params['p_Fast_to_F'] * y[1] - (params['p_F_to_D'] * AL) / (params['beta'] * y[5] + AL) * y[3] - params['gamma'] * min(y[4], y[3]) * phase
     )
